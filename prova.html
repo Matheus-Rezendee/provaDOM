@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locadora de Filmes</title>
+  <style>
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Locadora de Filmes</h1>
+  </header>
+
+  <section>
+    <h2>Filmes Disponíveis</h2>
+    <table id="filmes">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Ano de Lançamento</th>
+          <th>Gênero</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Matrix</td>
+          <td>1999</td>
+          <td>Ficção Científica</td>
+        </tr>
+        
+        <tr>
+          <td>O Poderoso Chefão</td>
+          <td>1972</td>
+          <td>Drama</td>
+        </tr>
+        <tr>
+          <td>Interestelar</td>
+          <td>2014</td>
+          <td>Ficção Científica</td>
+        </tr>
+        <tr>
+          <td>O Senhor dos Anéis: A Sociedade do Anel</td>
+          <td>2001</td>
+          <td>Aventura</td>
+        </tr>
+        <tr>
+          <td>De Volta para o Futuro</td>
+          <td>1985</td>
+          <td>Aventura</td>
+        </tr>
+        <tr>
+          <td>Star Wars: Episódio IV - Uma Nova Esperança</td>
+          <td>1977</td>
+          <td>Ficção Científica</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Locações Realizadas</h2>
+    <table id="locacoes">
+      <thead>
+        <tr>
+          <th>Data de Locação</th>
+          <th>Data de Devolução</th>
+          <th>Nome do Cliente</th>
+          <th>Filme Locado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01/04/2024</td>
+          <td>08/04/2024</td>
+          <td>João da Silva</td>
+          <td>Matrix</td>
+        </tr>
+        <tr>
+          <td>03/04/2024</td>
+          <td></td>
+          <td>Maria Oliveira</td>
+          <td>O Poderoso Chefão</td>
+        </tr>
+        <tr>
+          <td>05/04/2024</td>
+          <td>12/04/2024</td>
+          <td>Carlos Santos</td>
+          <td>Interestelar</td>
+        </tr>
+        <tr>
+          <td>07/04/2024</td>
+          <td></td>
+          <td>Fernanda Souza</td>
+          <td>O Senhor dos Anéis: A Sociedade do Anel</td>
+        </tr>
+        <tr>
+          <td>10/04/2024</td>
+          <td></td>
+          <td>Rafael Silva</td>
+          <td>De Volta para o Futuro</td>
+        </tr>
+        <tr>
+          <td>12/04/2024</td>
+          <td>19/04/2024</td>
+          <td>Patrícia Lima</td>
+          <td>Star Wars: Episódio IV - Uma Nova Esperança</td>
+        </tr>
+        <!-- Adicione mais locações aqui -->
+      </tbody>
+    </table>
+
+    <form id="adicionarLocacao">
+
+      <label for="nome">Nome do cliente</label>
+      <input name="nome" id="nome">
+      </input>
+      <label for="filme">Filme locado</label>
+      <input name="Filme locado" id="filme">
+      </input>
+
+      <input id="botao" type="submit" value="adicionar">
+    </form>
+  </section>
+
+</body>
+
+<script>
+
+  // questao 01
+  const table = document.getElementById("filmes")
+  const list = Array.from(table.children[1].children)
+
+  const section = document.querySelector('section')
+
+  const novatabela = document.createElement('table')
+  const cabecalho = document.createElement('thead')
+  const novatbody = document.createElement('tbody')
+
+  const novaTable = document.createElement("tr")
+
+  const qtdFilmes = document.createElement("td")
+  qtdFilmes.innerText = list.length
+
+  novaTable.appendChild(qtdFilmes)
+
+  novatbody.appendChild(novaTable)
+
+  novatabela.appendChild(novatbody)
+  section.appendChild(novatabela)
+  cabecalho.innerText = "filmes existentes"
+  novatabela.appendChild(cabecalho)
+
+ 
+
+  const table2 = document.getElementById("locacoes")
+  const list2 = Array.from(table2.children[1].children)
+
+  const section2 = document.querySelector('section')
+
+  const novatabela2 = document.createElement('table')
+  const cabecalho2 = document.createElement('thead')
+  const novatbody2 = document.createElement('tbody')
+
+  const novaTable2 = document.createElement("tr")
+
+  let contador = 0
+
+  list2.forEach(elemento => {
+    if (!elemento.children[1].innerText) {
+      contador++
+    }
+  })
+
+  const qtdLocacoes = document.createElement("td")
+  qtdLocacoes.innerText = contador
+
+  novaTable2.appendChild(qtdLocacoes)
+
+  novatbody2.appendChild(novaTable2)
+
+  novatabela2.appendChild(novatbody2)
+  section2.appendChild(novatabela2)
+  cabecalho2.innerText = "filmes locados"
+  novatabela2.appendChild(cabecalho2)
+
+  //final questao 01
+
+
+
+  //questao 02
+  const formulario = document.getElementById("adicionarLocacao")
+  formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const filme = document.getElementById("filme").value;
+    const dataLocacao = new Date().toLocaleDateString();
+
+    const novaLocacao = document.createElement("tr");
+
+    const tdNome = document.createElement("td")
+    tdNome.innerHTML = nome
+    const tdFilme = document.createElement("td")
+    tdFilme.innerHTML = filme
+    const tdData = document.createElement("td")
+    tdData.innerHTML = dataLocacao
+    const tdDataDevolucao = document.createElement("td")
+    tdDataDevolucao.innerHTML = ""
+
+    novaLocacao.appendChild(tdData)
+    novaLocacao.appendChild(tdDataDevolucao)
+    novaLocacao.appendChild(tdNome)
+    novaLocacao.appendChild(tdFilme)
+
+
+    table2.appendChild(novaLocacao);
+
+    formulario.reset()
+  });
+  //final questao 02
+
+
+
+
+  //questao 03
+  list2.forEach(elemento => {
+    list.forEach(segundoElemento => {
+      if (!elemento.children[1].innerText) {
+        if (elemento.children[3].innerText == segundoElemento.children[0].innerText) {
+          segundoElemento.children[0].style.color = "#FF5733"
+        }
+      } else {
+        if (elemento.children[3].innerText == segundoElemento.children[0].innerText) {
+          segundoElemento.children[0].style.color = "#4CAF50"
+        }
+      }
+    })
+  })
+
+
+
+  
+
+</script>
+
+</html>
